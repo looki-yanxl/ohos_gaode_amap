@@ -56,7 +56,7 @@
         NSAssert([args isKindOfClass:[NSDictionary class]], @"传参错误");
         //构建methedChannel
         NSString* channelName =
-        [NSString stringWithFormat:@"amap_map_%lld", viewId];
+        [NSString stringWithFormat:@"xbr_amap_%lld", viewId];
         _channel = [FlutterMethodChannel methodChannelWithName:channelName
                                                binaryMessenger:registrar.messenger];
         
