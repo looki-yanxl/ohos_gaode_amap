@@ -3,6 +3,11 @@
 #import "AMapFlutterStreamManager.h"
 #import "XbrGaodeSearchPlugin.h"
 #import "XbrGaodeLocationPlugin.h"
+// AMap iOS SDK headers
+#import <MAMapKit/MAMapKit.h>            // MAMapView, MAMapVersionNumber
+#import <AMapSearchKit/AMapSearchKit.h>  // AMapSearchAPI
+#import <AMapLocationKit/AMapLocationKit.h> // AMapLocationManager
+#import <AMapFoundationKit/AMapFoundationKit.h> // AMapServices
 
 @implementation XbrGaodeAmapPlugin{
 //    NSObject<FlutterPluginRegistrar>* _registrar;
