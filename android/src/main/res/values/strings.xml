@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="exit_nav_btn_text">退出</string>
+    <string name="ji_xu_nav">继续导航</string>
+    <string name="km_h">km/h</string>
+    <string name="sure_exit_btn_text">确认退出</string>
+    <string name="xbr">XBR</string>
+    <string name="qu_xiao">取消</string>
+    <string name="enter_text">进入</string>
+    <string name="zhun_bei">准备</string>
+    <string name="hh_gong_li">--公里</string>
+    <string name="hh">--</string>
+    <string name="dao_hang_start">导航即将开始</string>
+    <string name="zhen_zai_ji_suan">正在计算...</string>
+</resources>

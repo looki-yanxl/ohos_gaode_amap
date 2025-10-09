@@ -1,0 +1,34 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.yilin.xbr.xbr_gaode_amap">
+
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <application android:allowNativeHeapPointerTagging="false"
+        tools:targetApi="r">
+
+        <!-- 配置定位Service -->
+        <service android:name="com.amap.api.location.APSService"/>
+
+        <service
+            android:name=".location.keep_alive_service.LocationService"
+            android:exported="false"
+            android:permission="TODO"
+            android:process=":remote1">
+            <intent-filter>
+                <action android:name="com.yilin.xbr.xbr_gaode_amap.location.keep_alive_service.LocationService" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".location.keep_alive_service.LocationHelperService"
+            android:exported="false"
+            android:permission="TODO"
+            android:process=":remote2">
+            <intent-filter>
+                <action android:name="com.yilin.xbr.xbr_gaode_amap.location.keep_alive_service.LocationHelperService" />
+            </intent-filter>
+        </service>
+
+    </application>
+</manifest>

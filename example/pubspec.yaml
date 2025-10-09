@@ -1,0 +1,29 @@
+name: xbr_gaode_amap_example
+description: Demonstrates how to use the xbr_gaode_amap plugin.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  xbr_gaode_amap:
+    path: ../
+  cupertino_icons: ^1.0.2
+  #强大的动态权限控制器 ❤2249
+  #IOS Android 相应的权限清单设置请查看附件 res/list.info
+  permission_handler: ^9.2.0
+  #打开应用设置 有返回监听 ❤blogspot.com
+  open_apps_settings: ^0.0.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+flutter:
+  uses-material-design: true
+  assets:
+    - res/

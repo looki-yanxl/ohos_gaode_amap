@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.amap.api.navi.AMapNaviView
+        android:id="@+id/custom_navi_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- 头部道路指向 -->
+    <RelativeLayout
+        android:id="@+id/navi_sdk_autonavi_port_leftwidget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#252831"
+        android:paddingTop="50dp"
+        android:paddingBottom="10dp">
+
+        <com.amap.api.navi.view.NextTurnTipView
+            android:id="@+id/my_icon_next_turn_tip"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_alignBottom="@+id/text_next_road_name"
+            android:layout_marginStart="12dip"
+            android:textColor="@color/white"
+            android:src="@drawable/caricon"
+            android:textSize="20.0sp" />
+
+        <TextView
+            android:id="@+id/text_next_road_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dip"
+            android:layout_toEndOf="@+id/my_icon_next_turn_tip"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="38.0sp"
+            android:text="@string/zhun_bei"/>
+
+        <TextView
+            android:id="@+id/text_next_road_distance_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/text_next_road_distance"
+            android:layout_toEndOf="@+id/text_next_road_distance"
+            android:paddingBottom="6dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="18.0sp" />
+
+        <!--组件： 进入-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/text_next_road_distance"
+            android:layout_marginStart="10dip"
+            android:layout_toEndOf="@+id/text_next_road_distance_unit"
+            android:paddingBottom="6dp"
+            android:text="@string/enter_text"
+            android:textColor="#676B70"
+            android:textStyle="bold"
+            android:textSize="18.0sp"/>
+
+        <TextView
+            android:id="@+id/text_next_road_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_next_road_distance"
+            android:layout_marginStart="10dip"
+            android:layout_toEndOf="@+id/my_icon_next_turn_tip"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:text="@string/dao_hang_start"
+            android:textStyle="bold"
+            android:textSize="20.0sp"/>
+
+        <ImageView
+            android:id="@+id/gps_state_view"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="12dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/gps_goods"
+            android:contentDescription="@string/xbr" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/nav_speed_view"
+        android:layout_below="@+id/navi_sdk_autonavi_port_leftwidget"
+        android:layout_alignParentStart="true"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/navi_white_blue_all_radius_bg"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/nav_speed_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue"
+            android:textSize="24sp"
+            android:text="@string/hh"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/km_h"
+            android:textSize="11sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="130dp"
+        android:layout_height="16dp"
+        android:layout_above="@+id/navi_bottom_bar"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/xbr"
+        android:contentDescription="@string/xbr" />
+
+    <!--交通状况条 -->
+    <com.amap.api.navi.view.TrafficProgressBar
+        android:id="@+id/my_traffic_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/navi_bottom_bar"
+        android:layout_below="@+id/navi_sdk_autonavi_port_leftwidget"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="20dp" />
+
+    <!--车道线 -->
+    <com.amap.api.navi.view.DriveWayView
+        android:id="@+id/my_drive_way_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/navi_sdk_autonavi_port_leftwidget"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
+
+    <!--路口放大图 -->
+    <com.amap.api.navi.view.ZoomInIntersectionView
+        android:id="@+id/my_zoom_intersection_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/navi_sdk_autonavi_port_leftwidget"
+        android:layout_centerHorizontal="true"
+        android:scaleType="centerCrop" />
+
+    <!--道路名称-->
+    <TextView
+        android:id="@+id/nav_load_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/navi_bottom_bar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/navi_trans_white_all_radius_bg"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="6dp"
+        android:textColor="@color/blackGay"
+        android:textStyle="bold"
+        android:textSize="16.0sp" />
+
+    <com.amap.api.navi.view.OverviewButtonView
+        android:id="@+id/nav_overview_button_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/navi_bottom_bar"
+        android:layout_alignParentStart="true"/>
+
+    <com.amap.api.navi.view.TrafficButtonView
+        android:id="@+id/nav_traffic_button_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/nav_overview_button_view"
+        android:layout_alignParentStart="true"/>
+
+    <RelativeLayout
+        android:id="@+id/navi_bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/navi_white_top_stroke_radius_bg">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:text="正在前往：南明区人民政府位于贵阳市南明区箭道街52号"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="18.0sp" />
+
+        <LinearLayout
+            android:id="@+id/sub_info_views"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@+id/title"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="1dp"
+                android:text="收货人：李欣 | 18744925565"
+                android:textColor="@color/blackGay"
+                android:textStyle="bold"
+                android:textSize="13.0sp" />
+
+            <TextView
+                android:id="@+id/distance_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:text="@string/zhen_zai_ji_suan"
+                android:textSize="15.0sp" />
+
+            <TextView
+                android:id="@+id/timer_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="1dp"
+                android:textColor="@color/blackGay"
+                android:textStyle="bold"
+                android:textSize="13.0sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/lock_info_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/exit_btn"
+            android:layout_alignBottom="@+id/sub_info_views"
+            android:layout_marginEnd="12dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/navi_white_all_bg"
+            android:text="@string/ji_xu_nav"
+            android:textColor="@color/colorPrimary"
+            style="?android:attr/borderlessButtonStyle"
+            android:textStyle="bold"
+            android:textSize="16.0sp"
+            android:visibility="invisible"/>
+
+        <Button
+            android:id="@+id/exit_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/navi_white_all_bg"
+            android:text="@string/exit_nav_btn_text"
+            android:textColor="@color/red"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@+id/sub_info_views"
+            style="?android:attr/borderlessButtonStyle"
+            android:textStyle="bold"
+            android:textSize="16.0sp"/>
+
+        <LinearLayout
+            android:id="@+id/exit_btn_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/sub_info_views"
+            android:layout_marginEnd="12dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+            <Button
+                android:id="@+id/sure_exit_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/navi_red_all_bg"
+                android:text="@string/sure_exit_btn_text"
+                android:textColor="@color/white"
+                android:layout_marginEnd="4dp"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_weight="0.5"
+                android:textStyle="bold"
+                android:textSize="16.0sp"/>
+            <Button
+                android:id="@+id/qx_exit_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/navi_gay_all_bg"
+                android:text="@string/qu_xiao"
+                android:textColor="@color/blackGay"
+                android:layout_marginStart="4dp"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_weight="0.5"
+                android:textStyle="bold"
+                android:textSize="16.0sp"/>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

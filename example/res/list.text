@@ -1,0 +1,82 @@
+//ANDROID
+
+//1.Add the following to your "gradle.properties" file:
+    android.useAndroidX=true
+    android.enableJetifier=true
+//2.Make sure you set the compileSdkVersion in your "android/app/build.gradle" file to 31:
+    android {
+      compileSdkVersion 31
+      ...
+    }
+
+
+//IOS
+//1.添加下面内容到你的Podfile文件（在文件最下方，******节点开始）:
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+
+    ##### ******从这里开始拷贝
+    target.build_configurations.each do |config|
+      # 以下是flutter自动生成的一些配置
+
+      # 您可以在此处启用所需的权限。 例如启用相机
+      # 权限，只需删除前面的 `#` 字符，如下所示
+      #
+      # ## dart: PermissionGroup.camera 相机权限
+      # 'PERMISSION_CAMERA=1'
+      #
+      #  Preprocessor definitions can be found in: https://github.com/Baseflow/flutter-permission-handler/blob/master/permission_handler/ios/Classes/PermissionHandlerEnums.h
+      config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= [
+        '$(inherited)',
+
+        ## dart: PermissionGroup.calendar 打开日历权限 需要就删除下面的#
+        # 'PERMISSION_EVENTS=1',
+
+        ## dart: PermissionGroup.reminders 系统提醒权限
+        # 'PERMISSION_REMINDERS=1',
+
+        ## dart: PermissionGroup.contacts 打开联系人列表权限
+        # 'PERMISSION_CONTACTS=1',
+
+        ## dart: PermissionGroup.camera  相机权限
+        # 'PERMISSION_CAMERA=1',
+
+        ## dart: PermissionGroup.microphone  麦克风权限
+        # 'PERMISSION_MICROPHONE=1',
+
+        ## dart: PermissionGroup.speech   语音权限
+        # 'PERMISSION_SPEECH_RECOGNIZER=1',
+
+        ## dart: PermissionGroup.photos  打开相册权限
+        # 'PERMISSION_PHOTOS=1',
+
+        ## dart: [PermissionGroup.location, PermissionGroup.locationAlways, PermissionGroup.locationWhenInUse]  定位相关权限
+        # 'PERMISSION_LOCATION=1',
+
+        ## dart: PermissionGroup.notification  通知全西安
+        # 'PERMISSION_NOTIFICATIONS=1',
+
+        ## dart: PermissionGroup.mediaLibrary  媒体库权限
+        # 'PERMISSION_MEDIA_LIBRARY=1',
+
+        ## dart: PermissionGroup.sensors  距离红外传感器权限
+        # 'PERMISSION_SENSORS=1',
+
+        ## dart: PermissionGroup.bluetooth  蓝牙权限
+        # 'PERMISSION_BLUETOOTH=1',
+
+        ## dart: PermissionGroup.appTrackingTransparency  访问与应用相关的数据以跟踪用户或设备
+        # 'PERMISSION_APP_TRACKING_TRANSPARENCY=1',
+
+        ## dart: PermissionGroup.criticalAlerts  关键警报权限
+        # 'PERMISSION_CRITICAL_ALERTS=1'
+      ]
+
+    end
+    ##### *****拷贝到这里
+
+  end
+end
+
+//2.当然，你仍然需要配置info.list
