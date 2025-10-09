@@ -9,7 +9,7 @@
 #import <AMapLocationKit/AMapLocationKit.h> // AMapLocationManager
 #import <AMapFoundationKit/AMapFoundationKit.h> // AMapServices
 
-@implementation AMapFlutterMapPlugin{
+@implementation XbrGaodeAmapPlugin{
 //    NSObject<FlutterPluginRegistrar>* _registrar;
 //    FlutterMethodChannel* _channel;
 //    NSMutableDictionary* _mapControllers;

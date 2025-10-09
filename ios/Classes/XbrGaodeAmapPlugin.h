@@ -2,6 +2,6 @@
 #import <Foundation/Foundation.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
 
-@interface AMapFlutterMapPlugin : NSObject<FlutterPlugin>
+@interface XbrGaodeAmapPlugin : NSObject<FlutterPlugin>
 @end
 

@@ -28,4 +28,4 @@ flutter:
         package: com.yilin.xbr.xbr_gaode_amap
         pluginClass: AMapFlutterMapPlugin
       ios:
-        pluginClass: AMapFlutterMapPlugin
+        pluginClass: XbrGaodeAmapPlugin
