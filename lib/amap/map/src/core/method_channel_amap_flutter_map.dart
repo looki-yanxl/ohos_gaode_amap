@@ -93,7 +93,16 @@ class MethodChannelAMapFlutterMap implements AMapFlutterPlatform {
   @override
   Widget buildView(
       Map<String, dynamic> creationParams, Set<Factory<OneSequenceGestureRecognizer>> gestureRecognizers, void Function(int id) onPlatformViewCreated) {
-    if (defaultTargetPlatform == TargetPlatform.android) {
+    if (defaultTargetPlatform == TargetPlatform.ohos) {
+      creationParams['debugMode'] = kDebugMode;
+      return OhosView(
+        viewType: VIEW_TYPE,
+        onPlatformViewCreated: onPlatformViewCreated,
+        gestureRecognizers: gestureRecognizers,
+        creationParams: creationParams,
+        creationParamsCodec: const StandardMessageCodec(),
+      );
+    }else if (defaultTargetPlatform == TargetPlatform.android) {
       creationParams['debugMode'] = kDebugMode;
       return AndroidView(
         viewType: VIEW_TYPE,
