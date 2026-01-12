@@ -14,12 +14,15 @@ class AMapApiKey {
   //Android平台的key
   final String? androidKey;
 
+  //ohos平台的key
+  final String? ohosKey;
+
   ///构造AMapKeyConfig
   ///
   ///[iosKey] iOS平台的key
   ///
   ///[androidKey] Android平台的key
-  const AMapApiKey({this.iosKey, this.androidKey});
+  const AMapApiKey({this.iosKey, this.androidKey,this.ohosKey});
 
   dynamic toMap() {
     final Map<String, dynamic> json = <String, dynamic>{};
@@ -32,6 +35,7 @@ class AMapApiKey {
 
     addIfPresent('androidKey', androidKey);
     addIfPresent('iosKey', iosKey);
+    addIfPresent('ohosKey', ohosKey);
     return json;
   }
 
@@ -40,14 +44,14 @@ class AMapApiKey {
     if (identical(this, other)) return true;
     if (runtimeType != other.runtimeType) return false;
     final AMapApiKey typedOther = other;
-    return androidKey == typedOther.androidKey && iosKey == typedOther.iosKey;
+    return androidKey == typedOther.androidKey && iosKey == typedOther.iosKey && ohosKey == typedOther.ohosKey;
   }
 
   @override
-  int get hashCode => Object.hash(androidKey, iosKey);
+  int get hashCode => Object.hash(androidKey, iosKey,ohosKey);
 
   @override
   String toString() {
-    return 'AMapApiKey(androidKey: $androidKey, iosKey: $iosKey)';
+    return 'AMapApiKey(androidKey: $androidKey, iosKey: $iosKey,ohoskey: $ohosKey)';
   }
 }
