@@ -25,6 +25,9 @@ export default class FlutterLocPlugin implements FlutterPlugin, MethodCallHandle
   private mContext:Context|undefined;
   private VIEW_TYPE:string = "com.yilin.xbr.amap";
 
+  private CHANNEL_METHOD_LOCATION:string = "xbr_gaode_amap";
+  private CHANNEL_STREAM_LOCATION:string = "xbr_gaode_location_stream";
+
 
   async onMethodCall(call: MethodCall, result: MethodResult): Promise<void> {
     let pluginKey: string = "";
@@ -139,10 +142,10 @@ export default class FlutterLocPlugin implements FlutterPlugin, MethodCallHandle
     binding.getPlatformViewRegistry().registerViewFactory(this.VIEW_TYPE,factory)
 
     this.mContext = binding.getApplicationContext();
-    this.channel = new MethodChannel(binding.getBinaryMessenger(), "flutter_harmony_channel");
+    this.channel = new MethodChannel(binding.getBinaryMessenger(), this.CHANNEL_METHOD_LOCATION);
     this.channel.setMethodCallHandler(this)
 
-    this.eventChannel = new EventChannel(binding.getBinaryMessenger(), "flutter_harmony_channel")
+    this.eventChannel = new EventChannel(binding.getBinaryMessenger(), this.CHANNEL_STREAM_LOCATION)
     this.eventChannel.setStreamHandler(this)
 
   }

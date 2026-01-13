@@ -64,7 +64,7 @@ export class ConvertUtil {
       return;
     }
     let keyMap = ConvertUtil.toMap(object);
-    let keyObject = keyMap.get("androidKey");
+    let keyObject = keyMap.get("ohosKey");
     if (null != keyObject) {
       const aKey = ConvertUtil.toString(keyObject);
       if (ConvertUtil.apiKey != null && TextUtils.isEmpty(ConvertUtil.apiKey) || aKey != ConvertUtil.apiKey) {
