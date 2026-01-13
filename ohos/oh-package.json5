@@ -1,13 +1,17 @@
+
 {
-  "modelVersion": "5.0.0",
-  "name": "ohos_app",
+  "name": "entry",
   "version": "1.0.0",
   "description": "Please describe the basic information.",
   "main": "",
   "author": "",
   "license": "",
-  "dependencies": {},
-  "devDependencies": {
-    "@ohos/hypium": "1.0.6"
-  }
+  "modelVersion": "1.0.0",
+  "dependencies": {
+    "@amap/amap_lbs_common": ">=1.2.4",
+    "@amap/amap_lbs_location": ">=1.2.4",
+    "@amap/amap_lbs_map3d": ">=2.2.8",
+    "@amap/amap_lbs_search": ">=1.0.3"
+  },
 }
+
