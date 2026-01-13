@@ -63,9 +63,9 @@ class GaodeLocation {
   ///iOS端: https://lbs.amap.com/api/ios-location-sdk/guide/create-project/get-key<br>
   ///[androidKey] Android平台的key<br>
   ///[iosKey] ios平台的key<br>
-  static void setApiKey(String androidKey, String iosKey) {
+  static void setApiKey(String ohosKey,String androidKey, String iosKey) {
     _methodChannel
-        .invokeMethod('setApiKey', {'android': androidKey, 'ios': iosKey});
+        .invokeMethod('setApiKey', {'ohosKey':ohosKey,'android': androidKey, 'ios': iosKey});
   }
 
   /// 设置定位参数

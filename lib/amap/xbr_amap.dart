@@ -15,8 +15,8 @@ class XbrAmap {
   }
 
   ///初始化KAY
-  static void initKey({required String androidKey,required String iosKey}){
-    XbrAmap.instance().apikey = AMapApiKey(androidKey:androidKey,iosKey:iosKey);
+  static void initKey({required String ohosKey,required String androidKey,required String iosKey}){
+    XbrAmap.instance().apikey = AMapApiKey(ohosKey:ohosKey,androidKey:androidKey,iosKey:iosKey);
   }
 
   ///更新协议
