@@ -12,6 +12,7 @@ import {
 import { AMapLocationClientOption, AMapLocationManagerImpl } from '@amap/amap_lbs_location';
 import { AMapPrivacyAgreeStatus, AMapPrivacyInfoStatus, AMapPrivacyShowStatus } from '@amap/amap_lbs_common';
 import AMapLocationService from '../location/AMapLocationService';
+import { AMapPlatformViewFactory } from '../AMapPlatformViewFactory';
 
 
 export default class FlutterLocPlugin implements FlutterPlugin, MethodCallHandler, StreamHandler {
@@ -22,6 +23,8 @@ export default class FlutterLocPlugin implements FlutterPlugin, MethodCallHandle
   private mEventSink?: EventSink;
   private eventChannel?: EventChannel;
   private mContext:Context|undefined;
+  private VIEW_TYPE:string = "com.yilin.xbr.amap";
+
 
   async onMethodCall(call: MethodCall, result: MethodResult): Promise<void> {
     let pluginKey: string = "";
@@ -131,6 +134,10 @@ export default class FlutterLocPlugin implements FlutterPlugin, MethodCallHandle
   }
 
   onAttachedToEngine(binding: FlutterPluginBinding): void {
+
+    const factory  = new AMapPlatformViewFactory(binding.getBinaryMessenger())
+    binding.getPlatformViewRegistry().registerViewFactory(this.VIEW_TYPE,factory)
+
     this.mContext = binding.getApplicationContext();
     this.channel = new MethodChannel(binding.getBinaryMessenger(), "flutter_harmony_channel");
     this.channel.setMethodCallHandler(this)
