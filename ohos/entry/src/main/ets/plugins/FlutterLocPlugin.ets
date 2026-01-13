@@ -53,10 +53,10 @@ export default class FlutterLocPlugin implements FlutterPlugin, MethodCallHandle
         break;
 
       case "setApiKey":
-        let androidKey = null;
-        if (call.hasArgument("android")) {
-          androidKey = call.argument("android");
-          AMapLocationManagerImpl.setApiKey(androidKey);
+        let ohosKey = null;
+        if (call.hasArgument("ohos")) {
+          ohosKey = call.argument("ohosKey");
+          AMapLocationManagerImpl.setApiKey(ohosKey);
           result.success("SUCCESS");
         }
         result.success("SUCCESS");
