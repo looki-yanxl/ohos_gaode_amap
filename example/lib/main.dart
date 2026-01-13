@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:xbr_gaode_amap/xbr_gaode_amap.dart';
-import 'package:xbr_gaode_amap_example/core/confirm_dialog.dart';
-import 'package:xbr_gaode_amap_example/core/permission_util.dart';
+import 'package:ohos_gaode_amap/xbr_gaode_amap.dart';
+import 'package:ohos_gaode_amap_example/core/confirm_dialog.dart';
+import 'package:ohos_gaode_amap_example/core/permission_util.dart';
 
 import 'demo_page/amap_search_page.dart';
 import 'demo_page/location_map_page_page.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:xbr_gaode_amap/_core/show_fields.dart';
+import 'package:ohos_gaode_amap/_core/show_fields.dart';
 import '../../_core/driving_strategy.dart';
 import '../../amap/amap_widget.dart';
 import '../../amap/base/amap_flutter_base.dart';

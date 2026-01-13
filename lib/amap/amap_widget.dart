@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:xbr_gaode_amap/amap/xbr_amap.dart';
+import 'package:ohos_gaode_amap/amap/xbr_amap.dart';
 import 'base/amap_flutter_base.dart';
 import 'core/xbr_ui_controller.dart';
 import 'map/amap_flutter_map.dart';

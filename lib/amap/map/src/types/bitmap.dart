@@ -5,7 +5,7 @@
 import 'dart:async' show Future;
 import 'dart:typed_data' show Uint8List;
 import 'dart:ui';
-import 'package:xbr_gaode_amap/amap/base/amap_flutter_base.dart' show AMapUtil;
+import 'package:ohos_gaode_amap/amap/base/amap_flutter_base.dart' show AMapUtil;
 import 'package:flutter/material.dart' show ImageConfiguration, AssetImage, AssetBundleImageKey;
 import 'package:flutter/services.dart' show AssetBundle;
 import 'package:flutter/foundation.dart' show kIsWeb;

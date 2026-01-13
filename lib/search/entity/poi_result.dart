@@ -1,4 +1,4 @@
-import 'package:xbr_gaode_amap/amap/base/amap_flutter_base.dart';
+import 'package:ohos_gaode_amap/amap/base/amap_flutter_base.dart';
 
 class PoiResult {
   List<Pois>? pois;

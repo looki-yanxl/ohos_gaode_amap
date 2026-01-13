@@ -1,17 +1,17 @@
 // import 'package:flutter/material.dart';
 // import 'package:material_floating_search_bar/material_floating_search_bar.dart';
-// import 'package:xbr_gaode_amap/_core/location_info.dart';
-// import 'package:xbr_gaode_amap/amap/amap_widget.dart';
-// import 'package:xbr_gaode_amap/amap/base/amap_flutter_base.dart';
-// import 'package:xbr_gaode_amap/amap/core/xbr_ui_controller.dart';
-// import 'package:xbr_gaode_amap/amap/map/amap_flutter_map.dart';
-// import 'package:xbr_gaode_amap/amap/map/src/types/bitmap.dart';
-// import 'package:xbr_gaode_amap/amap/map/src/types/camera.dart';
-// import 'package:xbr_gaode_amap/amap/map/src/types/marker.dart';
-// import 'package:xbr_gaode_amap/amap/utils/amap_util.dart';
-// import 'package:xbr_gaode_amap/location/xbr_location_service.dart';
-// import 'package:xbr_gaode_amap/search/entity/input_tip_result.dart';
-// import 'package:xbr_gaode_amap/search/xbr_search.dart';
+// import 'package:ohos_gaode_amap/_core/location_info.dart';
+// import 'package:ohos_gaode_amap/amap/amap_widget.dart';
+// import 'package:ohos_gaode_amap/amap/base/amap_flutter_base.dart';
+// import 'package:ohos_gaode_amap/amap/core/xbr_ui_controller.dart';
+// import 'package:ohos_gaode_amap/amap/map/amap_flutter_map.dart';
+// import 'package:ohos_gaode_amap/amap/map/src/types/bitmap.dart';
+// import 'package:ohos_gaode_amap/amap/map/src/types/camera.dart';
+// import 'package:ohos_gaode_amap/amap/map/src/types/marker.dart';
+// import 'package:ohos_gaode_amap/amap/utils/amap_util.dart';
+// import 'package:ohos_gaode_amap/location/xbr_location_service.dart';
+// import 'package:ohos_gaode_amap/search/entity/input_tip_result.dart';
+// import 'package:ohos_gaode_amap/search/xbr_search.dart';
 //
 //
 // class AmapSearchPage extends StatefulWidget {
