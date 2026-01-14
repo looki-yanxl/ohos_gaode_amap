@@ -3,7 +3,6 @@
   "module": {
     "name": "ohos_gaode",
     "type": "har",
-    "apiType": "modules",
     "deviceTypes": [
       "default",
       "tablet"
