@@ -1,7 +1,7 @@
 
 {
   "module": {
-    "name": "gaode_ohos",
+    "name": "ohos_gaode_amap",
     "type": "har",
     "deviceTypes": [
       "default",
