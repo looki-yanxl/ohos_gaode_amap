@@ -11,8 +11,8 @@ import {
 } from '@ohos/flutter_ohos';
 import { AMapLocationClientOption, AMapLocationManagerImpl } from '@amap/amap_lbs_location';
 import { AMapPrivacyAgreeStatus, AMapPrivacyInfoStatus, AMapPrivacyShowStatus } from '@amap/amap_lbs_common';
-import AMapLocationService from '../location/AMapLocationService';
-import { AMapPlatformViewFactory } from '../AMapPlatformViewFactory';
+import AMapLocationService from '../../location/AMapLocationService';
+import { AMapPlatformViewFactory } from '../../AMapPlatformViewFactory';
 
 
 export default class FlutterLocPlugin implements FlutterPlugin, MethodCallHandler, StreamHandler {

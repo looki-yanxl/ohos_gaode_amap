@@ -12,7 +12,6 @@ import MapController from './core/MapController';
 import { MyMethodCallHandler } from './MyMethodCallHandler';
 import { MarkersController } from './overlays/marker/MarkersController';
 import { Params } from '@ohos/flutter_ohos/src/main/ets/plugin/platform/PlatformView';
-import { clauseComponent } from '../plugins/FlutterLocPlugin';
 
 @Builder
 export function WebBuilder(params: Params) {
