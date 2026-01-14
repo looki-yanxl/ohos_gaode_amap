@@ -1,3 +1,3 @@
 
-import FlutterLocPlugin from './src/main/ets/plugins/FlutterLocPlugin';
+import FlutterLocPlugin from './src/main/ets/components/plugin/FlutterLocPlugin';
 export default FlutterLocPlugin;

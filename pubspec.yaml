@@ -21,7 +21,6 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
-
   plugin:
     platforms:
       android:
@@ -30,5 +29,4 @@ flutter:
       ios:
         pluginClass: XbrGaodeAmapPlugin
       ohos:
-        package: plugins
         pluginClass: FlutterLocPlugin
