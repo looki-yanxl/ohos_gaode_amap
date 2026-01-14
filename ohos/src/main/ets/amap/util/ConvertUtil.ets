@@ -260,15 +260,15 @@ export class ConvertUtil {
   private static toCustomMapStyleOptions(o: Object): CustomMapStyleOptions {
     let map = ConvertUtil.toMap(o);
     const customMapStyleOptions: CustomMapStyleOptions = new CustomMapStyleOptions();
-    let enableData: Object = map["enabled"];
+    let enableData: Object = map.get("enabled") as object;
     if (null != enableData) {
       customMapStyleOptions.setEnable(ConvertUtil.toBoolean(enableData));
     }
-    let styleData = map["styleData"] as Uint8Array;
+    let styleData = map.get("styleData") as Uint8Array;
     if (null != styleData) {
       customMapStyleOptions.setStyleData(styleData);
     }
-    const styleExtraData = map["styleExtraData"] as Uint8Array;
+    const styleExtraData = map.get("styleExtraData") as Uint8Array;
     if (null != styleExtraData) {
       customMapStyleOptions.setStyleExtraData(styleExtraData);
     }
@@ -281,7 +281,7 @@ export class ConvertUtil {
 
     const myLocationStyle = new MyLocationStyle();
 
-    const enableData = map["enabled"] as object;
+    const enableData = map.get("enabled") as object;
     if (null != enableData) {
       myLocationStyle.showMyLocation(ConvertUtil.toBoolean(enableData));
     }
@@ -289,21 +289,21 @@ export class ConvertUtil {
     //两端差异比较大，Android端设置成跟随但是不移动到中心点模式，与iOS端兼容
     myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_FOLLOW_NO_CENTER);
 
-    let circleFillColorData = map["circleFillColor"] as object;
+    let circleFillColorData = map.get("circleFillColor") as object;
     if (null != circleFillColorData) {
       myLocationStyle.radiusFillColor(ConvertUtil.toInt(circleFillColorData));
     }
-    let circleStrokeColorData = map["circleStrokeColor"] as object;
+    let circleStrokeColorData = map.get("circleStrokeColor") as object;
     if (null != circleStrokeColorData) {
       myLocationStyle.strokeColor(ConvertUtil.toInt(circleStrokeColorData));
     }
 
-    const circleStrokeWidthData = map["circleStrokeWidth"] as object;
+    const circleStrokeWidthData = map.get("circleStrokeWidth") as object;
     if (null != circleStrokeWidthData) {
       myLocationStyle.strokeWidth(ConvertUtil.toPixels(circleStrokeWidthData));
     }
 
-    const iconDta = map["icon"] as object;
+    const iconDta = map.get("icon") as object;
     if (null != iconDta) {
       myLocationStyle.myLocationIcon(ConvertUtil.toBitmapDescriptor(iconDta));
     }

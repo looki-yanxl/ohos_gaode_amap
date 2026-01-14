@@ -5,7 +5,8 @@ import AMapOptionsBuilder from "./amap/AMapOptionsBuilder";
 import { ConvertUtil } from "./amap/util/ConvertUtil";
 import display from "@ohos.display";
 import { ConfigurationConstant } from '@kit.AbilityKit';
-
+import util from "@ohos.util";
+import { collections } from "@kit.ArkTS";
 
 
 export class AMapPlatformViewFactory extends PlatformViewFactory {
@@ -26,7 +27,7 @@ export class AMapPlatformViewFactory extends PlatformViewFactory {
     args: Object | null
   ): PlatformView {
     const builder = new AMapOptionsBuilder();
-    let params: Record<string, object>;
+    let params: Record<string, ESObject>;
 
     try {
       // density
@@ -37,44 +38,47 @@ export class AMapPlatformViewFactory extends PlatformViewFactory {
       });
 
 
-      params = args as Record<string, object>;
+      params = args as Record<string, ESObject>;
       LogUtil.i(
         AMapPlatformViewFactory.CLASS_NAME,
         'create params==>' + JSON.stringify(params),""
       );
 
-      if (params['privacyStatement'] != null) {
+      if (params.get('privacyStatement') != null) {
         ConvertUtil.setPrivacyStatement(
           context,
           params['privacyStatement']
         );
       }
 
-      const options = params['options'] as object;
+
+      const options = params.get('options') as Record<string, ESObject>;
+
+
       if (options != null) {
         ConvertUtil.interpretAMapOptions(options, builder);
       }
 
-      if (params['initialCameraPosition'] != null) {
+      if (params.get('initialCameraPosition') != null) {
         const cameraPosition: CameraPosition =
-          ConvertUtil.toCameraPosition(params['initialCameraPosition']);
+          ConvertUtil.toCameraPosition(params.get('initialCameraPosition'));
         builder.setCamera(cameraPosition);
       }
 
-      if (params['markersToAdd'] != null) {
-        builder.setInitialMarkers(params['markersToAdd']);
+      if (params.get('markersToAdd') != null) {
+        builder.setInitialMarkers(params.get('markersToAdd'));
       }
 
-      if (params['polylinesToAdd'] != null) {
-        builder.setInitialPolylines(params['polylinesToAdd']);
+      if (params.get('polylinesToAdd') != null) {
+        builder.setInitialPolylines(params.get('polylinesToAdd'));
       }
 
-      if (params['polygonsToAdd'] != null) {
-        builder.setInitialPolygons(params['polygonsToAdd']);
+      if (params.get('polygonsToAdd') != null) {
+        builder.setInitialPolygons(params.get('polygonsToAdd'));
       }
 
-      if (params['apiKey'] != null) {
-        ConvertUtil.checkApiKey(params['apiKey']);
+      if (params.get('apiKey') != null) {
+        ConvertUtil.checkApiKey(params.get('apiKey'));
       }
 
       // if (params['debugMode'] != null) {
