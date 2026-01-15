@@ -134,12 +134,26 @@ export class ConvertUtil {
   }
 
   public static toCameraPosition(o: Object): CameraPosition {
-    const data = o as Map<object, object>;
+    const data = o as Map<string, object>;
     let builder = CameraPosition.builder();
-    builder.bearing(ConvertUtil.toFloat(data.get("bearing")));
-    builder.target(ConvertUtil.toLatLng(data.get("target")));
-    builder.tilt(ConvertUtil.toFloat(data.get("tilt")));
-    builder.zoom(ConvertUtil.toFloat(data.get("zoom")));
+
+    const bearing: object | undefined = data.get('bearing');
+    const target: object | undefined = data.get('target');
+    const tilt: object | undefined = data.get('tilt');
+    const zoom: object | undefined = data.get('zoom');
+
+    if (target != undefined) {
+      builder.target(ConvertUtil.toLatLng(target));
+    }
+    if (bearing != undefined) {
+      builder.bearing(ConvertUtil.toFloat(bearing));
+    }
+    if (tilt != undefined) {
+      builder.tilt(ConvertUtil.toFloat(tilt));
+    }
+    if (zoom != undefined) {
+      builder.zoom(ConvertUtil.toFloat(zoom));
+    }
     return builder.build();
   }
 
