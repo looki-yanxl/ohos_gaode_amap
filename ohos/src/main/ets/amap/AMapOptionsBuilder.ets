@@ -14,7 +14,7 @@ import { ArrayList } from '@kit.ArkTS';
 export default class AMapOptionsBuilder implements AMapOptionsSink {
   private CLASS_NAME: string = "AMapOptionsBuilder";
   private options = new AMapOptions();
-  private customMapStyleOptions:CustomMapStyleOptions | undefined;
+  public  customMapStyleOptions:CustomMapStyleOptions | undefined;
   private myLocationStyle:MyLocationStyle|undefined;
   private minZoomLevel: number = 3;
   private maxZoomLevel: number = 20;
@@ -141,7 +141,8 @@ export default class AMapOptionsBuilder implements AMapOptionsSink {
     this.options.rotateGesturesEnabled(rotateGesturesEnabled);  }
 
   setTiltGesturesEnabled(tiltGesturesEnabled: boolean): void {
-    this.options.tiltGesturesEnabled(tiltGesturesEnabled);  }
+    this.options.tiltGesturesEnabled(tiltGesturesEnabled);
+  }
 
   setInitialMarkers(initialMarkers: Object): void {
     this.initialMarkers = initialMarkers;

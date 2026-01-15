@@ -1,5 +1,6 @@
 import { LogUtil } from '@amap/amap_lbs_common';
-import { AMap, AMapOptions, MapView, MapViewComponent, MapViewManager } from '@amap/amap_lbs_map3d';
+import { AMap, AMapOptions, MapView, MapViewComponent, MapViewManager,CustomMapStyleOptions,
+  CameraUpdateFactory } from '@amap/amap_lbs_map3d';
 import {
   BinaryMessenger,
   MethodCall,
@@ -60,18 +61,46 @@ export class AMapPlatformView extends  PlatformView implements MethodCallHandler
           return;
         }
         this.mapView = mapview;
+
+        if (this.mapView != null) {
+          this.mapView?.onCreate();
+          this.mapController = new MapController(this.methodChannel!, this.mapView!);
+
+          this.mapView.getMapAsync((amap: AMap) => {
+            this.markersController = new MarkersController(this.methodChannel!, amap);
+            // this.polylinesController = new PolylinesController(methodChannel, amap);
+            // this.polygonsController = new PolygonsController(methodChannel, amap);
+
+            const cameraPos = options.getCamera()
+            if(cameraPos != undefined){
+              let update = CameraUpdateFactory.newCameraPosition(cameraPos)
+              amap?.moveCamera(update)
+            }
+
+            const mapType = options.getMapType()
+            amap.setMapType(3)
+
+            amap.getUiSettings()?.setScaleControlsEnabled(options.getScaleControlsEnabled())
+            amap.getUiSettings()?.setCompassEnabled(options.getCompassEnabled())
+            amap.getUiSettings()?.setZoomGesturesEnabled(options.getZoomGesturesEnabled())
+            amap.getUiSettings()?.setScrollGesturesEnabled(options.getScrollGesturesEnabled())
+            amap.getUiSettings()?.setRotateGesturesEnabled(options.getRotateGesturesEnabled())
+            amap.getUiSettings()?.setTiltGesturesEnabled(options.getTiltGesturesEnabled())
+
+
+            //该方法在AMap类中提供
+            // amap?.setCustomMapStyle(new CustomMapStyleOptions()
+            //   .setEnable(true)
+            //   .setStyleDataPath("resource://rawfile/style.data")
+            //   .setStyleExtraPath("resource://rawfile/style_extra.data")
+            // )
+
+            this.initMyMethodCallHandlerMap();
+          })
+        }
       })
 
-      if (this.mapView != null) {
-        this.mapView?.onCreate();
-        this.mapView.getMapAsync((amap: AMap) => {
-          this.mapController = new MapController(this.methodChannel!, this.mapView!);
-          this.markersController = new MarkersController(this.methodChannel!, amap);
-          // this.polylinesController = new PolylinesController(methodChannel, amap);
-          // this.polygonsController = new PolygonsController(methodChannel, amap);
-          this.initMyMethodCallHandlerMap();
-        })
-      }
+
     } catch (e) {
       LogUtil.e(this.CLASS_NAME, "<init>", e);
     }
