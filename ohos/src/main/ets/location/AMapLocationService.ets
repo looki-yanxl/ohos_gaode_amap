@@ -54,7 +54,7 @@ export default class AMapLocationService implements IAMapLocationListener {
         timeInterval: locationInterval, //定位时间间隔
         distanceInterval: 0, //位置报告距离间隔
         maxAccuracy: 20, //定位精度 单位：米
-        allowsBackgroundLocationUpdates: false, //是否允许后台定位
+        allowsBackgroundLocationUpdates: true, //是否允许后台定位
         locatingWithReGeocode: needAddress, //定位是否返回逆地理信息
         reGeocodeLanguage: geoLanguage, //逆地址语言类型
         isOffset: true //是否加偏

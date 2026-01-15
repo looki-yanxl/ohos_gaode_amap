@@ -73,8 +73,8 @@ class LocationOption {
   Map getOptionsMap() {
     return {
       "locationInterval": locationInterval,
-      "needAddress": needAddress,
-      "locationMode": locationMode.index,
+      "needAddress": false,
+      "locationMode": 2,
       "geoLanguage": geoLanguage.index,
       "onceLocation": onceLocation,
       'sensorEnable': sensorEnable,
