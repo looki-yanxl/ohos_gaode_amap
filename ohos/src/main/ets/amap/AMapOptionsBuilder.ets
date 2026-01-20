@@ -3,6 +3,7 @@ import {
   AMapOptions,
   CameraPosition,
   CustomMapStyleOptions,
+  LatLng,
   LatLngBounds,
   MyLocationStyle
 } from '@amap/amap_lbs_map3d';
@@ -56,7 +57,7 @@ export default class AMapOptionsBuilder implements AMapOptionsSink {
         mapController?.setLabelsEnabled(this.labelsEnabled);
         mapController?.setGestureScaleByMapCenter(this.gestureScaleByMapCenter);
         if (null != this.initialMarkers) {
-          let markerList = this.initialMarkers;
+          let marker = this.initialMarkers;
           aMapPlatformView?.getMarkersController()?.addMark(marker);
         }
         // if (null != this.initialPolylines) {
