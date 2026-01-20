@@ -122,8 +122,38 @@ export default class AMapLocationService implements IAMapLocationListener {
     let result = LocationUtil.buildLocationResultMap(location);
     result.set("pluginKey", this.mPluginKey);
     this.mEventSink.success(result);
-
   };
+
+  public onLocationChangedSuccess(location: geoLocationManager.Location):void{
+    if(null == this.mEventSink)return;
+    let result: Map<String, Object> = new Map<String, Object>();
+    result.set("callbackTime", LocationUtil.formatUTC(Date.now(), ""));
+    if (null != location) {
+      result.set("locationTime", LocationUtil.formatUTC(location.timeStamp, ""));
+      result.set("latitude", location.latitude);
+      result.set("longitude", location.longitude);
+      result.set("accuracy", location.accuracy);
+      result.set("altitude", location.altitude);
+      result.set("speed", location.speed);
+
+      /// todo 省市区
+      // result.set("country", location.getCountry());
+      // result.set("province", location.getProvince());
+      // result.set("city", location.getCity());
+      // result.set("district", location.getDistrict());
+      // result.set("street", location.getStreet());
+      // result.set("streetNumber", location.getStreetNum());
+      // result.set("cityCode", location.getCityCode());
+      // result.set("adCode", location.getAdCode());
+      // result.set("address", location.getAddress());
+    } else {
+      result.set("errorCode", -1);
+      result.set("errorInfo", "location is null");
+    }
+    result.set("pluginKey", this.mPluginKey);
+    this.mEventSink.success(result);
+  };
+
   public onLocationError(locationErrorInfo: AMapLocationErrorInfo):void{
     if(null == this.mEventSink)return;
     this.mEventSink?.error(locationErrorInfo.errorCode.toString(),locationErrorInfo.errorMsg,null);

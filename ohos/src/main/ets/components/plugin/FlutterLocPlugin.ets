@@ -13,6 +13,7 @@ import { AMapLocationClientOption, AMapLocationManagerImpl } from '@amap/amap_lb
 import { AMapPrivacyAgreeStatus, AMapPrivacyInfoStatus, AMapPrivacyShowStatus } from '@amap/amap_lbs_common';
 import AMapLocationService from '../../location/AMapLocationService';
 import { AMapPlatformViewFactory } from '../../AMapPlatformViewFactory';
+import geoLocationManager from '@ohos.geoLocationManager';
 
 
 export default class FlutterLocPlugin implements FlutterPlugin, MethodCallHandler, StreamHandler {
@@ -100,7 +101,22 @@ export default class FlutterLocPlugin implements FlutterPlugin, MethodCallHandle
         if (call.hasArgument("pluginKey")) {
           pluginKey = call.argument("pluginKey");
         }
-        this.startLocation(pluginKey);
+        const requestInfo: geoLocationManager.LocationRequest = {
+          'priority': geoLocationManager.LocationRequestPriority.ACCURACY,
+          'scenario': geoLocationManager.LocationRequestScenario.UNSET,
+          'timeInterval': 60, // 60秒更新一次
+          'distanceInterval': 0,
+          'maxAccuracy': 0
+        };
+
+        geoLocationManager.on('locationChange', requestInfo, (location: geoLocationManager.Location) => {
+          console.info(`FlutterLocPlugin: location update - lat: ${location.latitude}, lng: ${location.longitude}`);
+          let locationClientImp = this.getLocationClientImp(pluginKey);
+          if (null != locationClientImp) {
+            locationClientImp.onLocationChangedSuccess(location);
+          }
+        });
+        // this.startLocation(pluginKey);
         break;
       case "stopLocation":
         if (call.hasArgument("pluginKey")) {
