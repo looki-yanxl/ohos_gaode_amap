@@ -63,11 +63,12 @@ export class AMapPlatformViewFactory extends PlatformViewFactory {
         const cameraPosition: CameraPosition =
           ConvertUtil.toCameraPosition(params.get('initialCameraPosition'));
         builder.setCamera(cameraPosition);
+        builder.setInitialMarkers(cameraPosition.target);
       }
 
-      if (params.get('markersToAdd') != null) {
-        builder.setInitialMarkers(params.get('markersToAdd'));
-      }
+      // if (params.get('markersToAdd') != null) {
+      //   builder.setInitialMarkers(params.get('markersToAdd'));
+      // }
 
       if (params.get('polylinesToAdd') != null) {
         builder.setInitialPolylines(params.get('polylinesToAdd'));

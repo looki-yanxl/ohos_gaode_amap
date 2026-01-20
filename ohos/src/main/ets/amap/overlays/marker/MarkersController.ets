@@ -109,6 +109,14 @@ implements MyMethodCallHandler {
     }
   }
 
+  addMark(latlng: LatLng): void {
+    if (latlng != null) {
+      let options: MarkerOptions = new MarkerOptions();
+      options.setPosition(new LatLng(latlng.latitude, latlng.longitude));
+      this.amap?.addMarker(options);
+    }
+  }
+
   private add(markerObj: object): void {
     if (this.amap != null) {
       const builder = new MarkerOptionsBuilder();

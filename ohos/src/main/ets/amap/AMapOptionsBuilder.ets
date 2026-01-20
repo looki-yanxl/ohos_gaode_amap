@@ -27,7 +27,7 @@ export default class AMapOptionsBuilder implements AMapOptionsSink {
   private gestureScaleByMapCenter: boolean = false;
   private anchorX: number = 2.0;
   private anchorY: number = 2.0;
-  private initialMarkers: object | undefined;
+  private initialMarkers: LatLng | undefined;
   private initialPolylines: object | undefined;
   private initialPolygons: object | undefined;
 
@@ -56,8 +56,8 @@ export default class AMapOptionsBuilder implements AMapOptionsSink {
         mapController?.setLabelsEnabled(this.labelsEnabled);
         mapController?.setGestureScaleByMapCenter(this.gestureScaleByMapCenter);
         if (null != this.initialMarkers) {
-          let markerList = this.initialMarkers as ArrayList <Object>;
-          aMapPlatformView?.getMarkersController()?.addByList(markerList);
+          let markerList = this.initialMarkers;
+          aMapPlatformView?.getMarkersController()?.addMark(marker);
         }
         // if (null != this.initialPolylines) {
         //   let markerList = this.initialPolylines as ArrayList <Object>;
@@ -140,7 +140,7 @@ export default class AMapOptionsBuilder implements AMapOptionsSink {
     this.options.tiltGesturesEnabled(tiltGesturesEnabled);
   }
 
-  setInitialMarkers(initialMarkers: Object): void {
+  setInitialMarkers(initialMarkers: LatLng): void {
     this.initialMarkers = initialMarkers;
   }
 
