@@ -10,6 +10,7 @@ import { BinaryMessenger } from '@ohos/flutter_ohos';
 import { AMapPlatformView } from './AMapPlatformView';
 import { AMapOptionsSink } from './core/AMapOptionsSink';
 import { ArrayList } from '@kit.ArkTS';
+import MapController from './core/MapController';
 
 export default class AMapOptionsBuilder implements AMapOptionsSink {
   private CLASS_NAME: string = "AMapOptionsBuilder";
@@ -33,46 +34,41 @@ export default class AMapOptionsBuilder implements AMapOptionsSink {
   build(id: number, context: Context, binaryMessenger: BinaryMessenger): AMapPlatformView{
 
     this.options.zoomControlsEnabled(false);
-    let  aMapPlatformView = new AMapPlatformView(id, context, binaryMessenger, this.options);
-    try {
-      //iOS端没有放大缩小UI, Android端强制隐藏
-
-      if (null != this.customMapStyleOptions) {
-        aMapPlatformView?.getMapController()?.setCustomMapStyleOptions(this.customMapStyleOptions);
-      }
-      if (null != this.myLocationStyle) {
-        aMapPlatformView?.getMapController()?.setMyLocationStyle(this.myLocationStyle);
-      }
-      if (this.anchorX >= 0 && this.anchorX <= 1.0 && this.anchorY <= 1.0 && this.anchorY >= 0) {
-        aMapPlatformView?.getMapController()?.setScreenAnchor(this.anchorX, this.anchorY);
-      }
-      aMapPlatformView?.getMapController()?.setMinZoomLevel(this.minZoomLevel);
-      aMapPlatformView?.getMapController()?.setMaxZoomLevel(this.maxZoomLevel);
-      if (null != this.latLngBounds) {
-        aMapPlatformView?.getMapController()?.setLatLngBounds(this.latLngBounds);
-      }
-      aMapPlatformView?.getMapController()?.setTrafficEnabled(this.trafficEnabled);
-      aMapPlatformView?.getMapController()?.setTouchPoiEnabled(this.touchPoiEnabled);
-      aMapPlatformView?.getMapController()?.setBuildingsEnabled(this.buildingsEnabled);
-      aMapPlatformView?.getMapController()?.setLabelsEnabled(this.labelsEnabled);
-      aMapPlatformView?.getMapController()?.setGestureScaleByMapCenter(this.gestureScaleByMapCenter);
-      if (null != this.initialMarkers) {
-        let markerList = this.initialMarkers as ArrayList <Object>;
-        aMapPlatformView?.getMarkersController()?.addByList(markerList);
-      }
-      // if (null != this.initialPolylines) {
-      //   let markerList = this.initialPolylines as ArrayList <Object>;
-      //   aMapPlatformView?.getPolylinesController()?.addByList(markerList);
-      // }
-      // if (null != this.initialPolygons) {
-      //   let polygonList = this.initialPolygons as ArrayList <Object>;
-      //   aMapPlatformView?.getPolygonsController()?.addByList(polygonList);
-      // }
-    } catch (e) {
-      LogUtil.e(this.CLASS_NAME, "build", "");
-    }finally {
-      return aMapPlatformView;
-    }
+    let  aMapPlatformView = new AMapPlatformView(id, context, binaryMessenger, this.options,
+      (mapController: MapController | null) => {
+        if (null != this.customMapStyleOptions) {
+          mapController?.setCustomMapStyleOptions(this.customMapStyleOptions);
+        }
+        if (null != this.myLocationStyle) {
+          mapController?.setMyLocationStyle(this.myLocationStyle);
+        }
+        if (this.anchorX >= 0 && this.anchorX <= 1.0 && this.anchorY <= 1.0 && this.anchorY >= 0) {
+          mapController?.setScreenAnchor(this.anchorX, this.anchorY);
+        }
+        mapController?.setMinZoomLevel(this.minZoomLevel);
+        mapController?.setMaxZoomLevel(this.maxZoomLevel);
+        if (null != this.latLngBounds) {
+          mapController?.setLatLngBounds(this.latLngBounds);
+        }
+        mapController?.setTrafficEnabled(this.trafficEnabled);
+        mapController?.setTouchPoiEnabled(this.touchPoiEnabled);
+        mapController?.setBuildingsEnabled(this.buildingsEnabled);
+        mapController?.setLabelsEnabled(this.labelsEnabled);
+        mapController?.setGestureScaleByMapCenter(this.gestureScaleByMapCenter);
+        if (null != this.initialMarkers) {
+          let markerList = this.initialMarkers as ArrayList <Object>;
+          aMapPlatformView?.getMarkersController()?.addByList(markerList);
+        }
+        // if (null != this.initialPolylines) {
+        //   let markerList = this.initialPolylines as ArrayList <Object>;
+        //   aMapPlatformView?.getPolylinesController()?.addByList(markerList);
+        // }
+        // if (null != this.initialPolygons) {
+        //   let polygonList = this.initialPolygons as ArrayList <Object>;
+        //   aMapPlatformView?.getPolygonsController()?.addByList(polygonList);
+        // }
+      });
+    return aMapPlatformView;
   }
 
 

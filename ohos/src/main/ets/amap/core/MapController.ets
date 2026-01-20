@@ -28,56 +28,53 @@ export default class MapController implements MyMethodCallHandler{
   private mapLoaded: boolean = false;
   private myLocationShowing: boolean = false;
 
-  constructor(methodChannel: MethodChannel, mapView: MapView) {
+  constructor(methodChannel: MethodChannel, mapView: MapView,amap: AMap) {
 
     this.methodChannel = methodChannel;
     this.mapView = mapView;
 
-
-    this.mapView.getMapAsync((amap: AMap) => {
-      this.amap = amap;
-      this.amap?.setOnMapLoadedListener(() => this.onMapLoaded());
-      this.amap?.setOnMyLocationChangeListener((location: geoLocationManager.Location) => this.onMyLocationChange(location));
-      this.amap?.setOnCameraChangeListener(new OnCameraChangeListener((position: CameraPosition) => {
-        if (null != this.methodChannel) {
-          const cameraChangeMap = new Map<String, Object | null>();
-          cameraChangeMap.set("position", ConvertUtil.cameraPositionToMap(position));
-          this.methodChannel?.invokeMethod("camera#onMove", cameraChangeMap);
-          LogUtil.i(this.CLASS_NAME, "onCameraChange===>" + cameraChangeMap, "");
-        }
-      }, (position: CameraPosition) => {
-        if (null != this.methodChannel) {
-          const cameraChangeFinishMap = new Map<String, Object | null>();
-          cameraChangeFinishMap.set("position", ConvertUtil.cameraPositionToMap(position));
-          this.methodChannel.invokeMethod("camera#onMoveEnd", cameraChangeFinishMap);
-          LogUtil.i(this.CLASS_NAME, "onCameraChangeFinish===>" + cameraChangeFinishMap, "");
-        }
-      }));
-      this.amap?.setOnMapLongClickListener((latLng) => {
-        if (null != methodChannel) {
-          const longClickMap = new Map<String, Object | null>();
-          longClickMap.set("latLng", ConvertUtil.latLngToList(latLng));
-          methodChannel.invokeMethod("map#onLongPress", longClickMap);
-          LogUtil.i(this.CLASS_NAME, "onMapLongClick===>" + longClickMap, "");
-        }
-      });
-      this.amap?.setOnMapClickListener((latLng) => {
-        if (null != methodChannel) {
-          const mapClick = new Map<String, Object | null>();
-          mapClick.set("latLng", ConvertUtil.latLngToList(latLng));
-          methodChannel.invokeMethod("map#onTap", mapClick);
-          LogUtil.i(this.CLASS_NAME, "onMapClick===>" + mapClick, "");
-        }
-      });
-      this.amap?.addOnPOIClickListener((poi) => {
-        if (null != methodChannel) {
-          const poiMap = new Map<String, Object | null>();
-          poiMap.set("poi", ConvertUtil.poiToMap(poi));
-          methodChannel.invokeMethod("map#onPoiTouched", poiMap);
-          LogUtil.i(this.CLASS_NAME, "onPOIClick===>" + poiMap, "");
-        }
-      });
-    })
+    this.amap = amap;
+    this.amap?.setOnMapLoadedListener(() => this.onMapLoaded());
+    this.amap?.setOnMyLocationChangeListener((location: geoLocationManager.Location) => this.onMyLocationChange(location));
+    this.amap?.setOnCameraChangeListener(new OnCameraChangeListener((position: CameraPosition) => {
+      if (null != this.methodChannel) {
+        const cameraChangeMap = new Map<String, Object | null>();
+        cameraChangeMap.set("position", ConvertUtil.cameraPositionToMap(position));
+        this.methodChannel?.invokeMethod("camera#onMove", cameraChangeMap);
+        LogUtil.i(this.CLASS_NAME, "onCameraChange===>" + cameraChangeMap, "");
+      }
+    }, (position: CameraPosition) => {
+      if (null != this.methodChannel) {
+        const cameraChangeFinishMap = new Map<String, Object | null>();
+        cameraChangeFinishMap.set("position", ConvertUtil.cameraPositionToMap(position));
+        this.methodChannel.invokeMethod("camera#onMoveEnd", cameraChangeFinishMap);
+        LogUtil.i(this.CLASS_NAME, "onCameraChangeFinish===>" + cameraChangeFinishMap, "");
+      }
+    }));
+    this.amap?.setOnMapLongClickListener((latLng) => {
+      if (null != methodChannel) {
+        const longClickMap = new Map<String, Object | null>();
+        longClickMap.set("latLng", ConvertUtil.latLngToList(latLng));
+        methodChannel.invokeMethod("map#onLongPress", longClickMap);
+        LogUtil.i(this.CLASS_NAME, "onMapLongClick===>" + longClickMap, "");
+      }
+    });
+    this.amap?.setOnMapClickListener((latLng) => {
+      if (null != methodChannel) {
+        const mapClick = new Map<String, Object | null>();
+        mapClick.set("latLng", ConvertUtil.latLngToList(latLng));
+        methodChannel.invokeMethod("map#onTap", mapClick);
+        LogUtil.i(this.CLASS_NAME, "onMapClick===>" + mapClick, "");
+      }
+    });
+    this.amap?.addOnPOIClickListener((poi) => {
+      if (null != methodChannel) {
+        const poiMap = new Map<String, Object | null>();
+        poiMap.set("poi", ConvertUtil.poiToMap(poi));
+        methodChannel.invokeMethod("map#onPoiTouched", poiMap);
+        LogUtil.i(this.CLASS_NAME, "onPOIClick===>" + poiMap, "");
+      }
+    });
   }
 
 

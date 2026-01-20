@@ -48,7 +48,9 @@ export class AMapPlatformView extends  PlatformView implements MethodCallHandler
   private disposed: boolean = false;
   private myMethodCallHandlerMap: Map<String, MyMethodCallHandler> | undefined;
 
-  constructor(id: number, context: Context, binaryMessenger: BinaryMessenger, options: AMapOptions) {
+  constructor(id: number, context: Context, binaryMessenger: BinaryMessenger, options: AMapOptions,
+    onInitialized?: (controller: MapController | null) => void
+  ) {
     super();
     this.methodChannel = new MethodChannel(binaryMessenger, "xbr_amap_" + id);
     this.methodChannel.setMethodCallHandler(this);
@@ -58,15 +60,15 @@ export class AMapPlatformView extends  PlatformView implements MethodCallHandler
       // mapView = new TextureMapView(context, options);
       MapViewManager.getInstance().registerMapViewCreatedCallback((mapview?: MapView, mapViewName?: string) => {
         if (!mapview) {
+          onInitialized?.(null);
           return;
         }
         this.mapView = mapview;
 
         if (this.mapView != null) {
           this.mapView?.onCreate();
-          this.mapController = new MapController(this.methodChannel!, this.mapView!);
-
           this.mapView.getMapAsync((amap: AMap) => {
+            this.mapController = new MapController(this.methodChannel!, this.mapView!,amap);
             this.markersController = new MarkersController(this.methodChannel!, amap);
             // this.polylinesController = new PolylinesController(methodChannel, amap);
             // this.polygonsController = new PolygonsController(methodChannel, amap);
@@ -94,6 +96,7 @@ export class AMapPlatformView extends  PlatformView implements MethodCallHandler
             //   .setStyleDataPath("resource://rawfile/style.data")
             //   .setStyleExtraPath("resource://rawfile/style_extra.data")
             // )
+            onInitialized?.(this.mapController!);
 
             this.initMyMethodCallHandlerMap();
           })
@@ -102,6 +105,7 @@ export class AMapPlatformView extends  PlatformView implements MethodCallHandler
 
 
     } catch (e) {
+      onInitialized?.(null);
       LogUtil.e(this.CLASS_NAME, "<init>", e);
     }
   }
