@@ -229,7 +229,7 @@ export default class FlutterLocPlugin implements FlutterPlugin, MethodCallHandle
     }
     let locationClientImp = this.getLocationClientImp(pluginKey);
     if (null != locationClientImp) {
-      locationClientImp.startLocation(2);
+      locationClientImp.startLocation(1);
     }
   }
 
@@ -244,7 +244,7 @@ export default class FlutterLocPlugin implements FlutterPlugin, MethodCallHandle
     }
     let locationClientImp = this.getLocationClientImp(pluginKey);
     if (null != locationClientImp) {
-      locationClientImp.stopLocation(2);
+      locationClientImp.stopLocation(1);
     }
   }
 
