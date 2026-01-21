@@ -1,5 +1,6 @@
 import { LogUtil } from '@amap/amap_lbs_common';
-import { AMap, LatLng, Marker, MarkerOptions, OnMarkerDragListener, Poi } from '@amap/amap_lbs_map3d';
+import { AMap,BitmapDescriptor,
+  BitmapDescriptorFactory, LatLng, Marker, MarkerOptions, OnMarkerDragListener, Poi } from '@amap/amap_lbs_map3d';
 import { MethodCall, MethodChannel, MethodResult } from '@ohos/flutter_ohos';
 import { MyMethodCallHandler } from '../../MyMethodCallHandler';
 import Const from '../../util/Const';
