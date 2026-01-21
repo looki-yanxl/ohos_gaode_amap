@@ -10,6 +10,8 @@ import { MarkerOptionsBuilder } from './MarkerOptionsBuilder';
 import { MarkerUtil } from './MarkerUtil';
 import { ArrayList } from '@kit.ArkTS';
 
+const _cache: Map<string, BitmapDescriptor> = new Map();
+
 export class MarkersController
   extends AbstractOverlayController<MarkerController>
 implements MyMethodCallHandler {
@@ -109,12 +111,39 @@ implements MyMethodCallHandler {
     }
   }
 
-  addMark(latlng: LatLng): void {
+  addMark(context:Context,latlng: LatLng): void {
     if (latlng != null) {
       let options: MarkerOptions = new MarkerOptions();
       options.setPosition(new LatLng(latlng.latitude, latlng.longitude));
+
+      this.getIcon("icon_map_marker.png",context).then((bitmapDescriptor:BitmapDescriptor | undefined) => {
+        if (bitmapDescriptor != undefined) {
+          options.setIcon(bitmapDescriptor);
+        }
+      })
       this.amap?.addMarker(options);
     }
+  }
+
+
+  async getIcon(iconName: string, context?: Context): Promise<BitmapDescriptor | undefined> {
+    // 1. 检查缓存
+    if (_cache.has(iconName)) {
+      return _cache.get(iconName)!;
+    }
+
+    // 2. 缓存中没有，尝试加载
+    if (!context) {
+      return undefined;
+    }
+
+    const bitmapDes = await BitmapDescriptorFactory.fromRawfilePath(context, iconName);
+    if (bitmapDes != undefined) {
+      _cache.set(iconName, bitmapDes);
+
+      return bitmapDes
+    }
+    return undefined;
   }
 
   private add(markerObj: object): void {

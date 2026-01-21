@@ -58,7 +58,7 @@ export default class AMapOptionsBuilder implements AMapOptionsSink {
         mapController?.setGestureScaleByMapCenter(this.gestureScaleByMapCenter);
         if (null != this.initialMarkers) {
           let marker = this.initialMarkers;
-          aMapPlatformView?.getMarkersController()?.addMark(marker);
+          aMapPlatformView?.getMarkersController()?.addMark(context,marker);
         }
         // if (null != this.initialPolylines) {
         //   let markerList = this.initialPolylines as ArrayList <Object>;
